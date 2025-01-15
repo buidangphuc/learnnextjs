@@ -184,6 +184,7 @@ export default function AppHeader() {
               component="div"
               sx={{ display: { xs: "none", sm: "block" } }}
               onClick={() => router.push("/")}
+              style={{ cursor: "pointer" }}
             >
               Soundcloud Clone
             </Typography>
