@@ -113,7 +113,7 @@ export default function AppHeader() {
             anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
         >
             <MenuItem>
-                <Link href={"/profile"} style={{
+                <Link href={`/profile/${session?.user?._id}`} style={{
                     color: "unset",
                     textDecoration: "unset"
                 }}>
@@ -203,7 +203,7 @@ export default function AppHeader() {
                             }}
                             onClick={() => handleRedirectHome()}
                         >
-                            Soundclound Clone
+                            Soundcloud Clone
                         </Typography>
                         <Search>
                             <SearchIconWrapper>
@@ -231,7 +231,7 @@ export default function AppHeader() {
                                     <>
                                         <Link href={"/playlist"}>Playlists</Link>
                                         <Link href={"/like"}>Likes</Link>
-                                        <span>Upload</span>
+                                        <Link href={"/track/upload"}>Upload</Link>
                                         <Avatar
                                             onClick={handleProfileMenuOpen}
                                         >P</Avatar>
