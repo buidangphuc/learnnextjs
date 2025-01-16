@@ -2,6 +2,7 @@
 // import { useState } from "react";
 
 const LikePage = () => {
+    // const [name, setName] = useState("Hoi Dan IT")
     const handleClick = () => {
         alert("me")
     }
