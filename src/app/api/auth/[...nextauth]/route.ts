@@ -1,7 +1,7 @@
 import NextAuth from "next-auth"
 import GithubProvider from "next-auth/providers/github"
 import { AuthOptions } from 'next-auth';
-import { sendRequest } from "@/utils/api";
+import { sendRequest } from "../../../../utils/api";
 import { JWT } from "next-auth/jwt";
 import CredentialsProvider from "next-auth/providers/credentials";
 
@@ -11,14 +11,14 @@ export const authOptions: AuthOptions = {
     providers: [
         CredentialsProvider({
             // The name to display on the sign in form (e.g. "Sign in with...")
-            name: "Credentials",
+            name: "Hỏi Dân IT",
             // `credentials` is used to generate a form on the sign in page.
             // You can specify which fields should be submitted, by adding keys to the `credentials` object.
             // e.g. domain, username, password, 2FA token, etc.
             // You can pass any HTML attribute to the <input> tag through the object.
             credentials: {
-                username: { label: "Username", type: "text", },
-                password: { label: "Password", type: "password" }
+                username: { label: "Tên đăng nhập", type: "text", },
+                password: { label: "Mật khẩu", type: "password" }
             },
             async authorize(credentials, req) {
                 // Add logic here to look up the user from the credentials supplied
@@ -36,7 +36,8 @@ export const authOptions: AuthOptions = {
                     return res.data as any;
                 } else {
                     // If you return null then an error will be displayed advising the user to check their details.
-                    return null
+                    // return null
+                    throw new Error(res?.message as string)
 
                     // You can also Reject this callback with an Error thus the user will be sent to the error page with the error message as a query parameter
                 }
@@ -75,7 +76,7 @@ export const authOptions: AuthOptions = {
             }
             return token;
         },
-        session({ session, token, user }) { 
+        session({ session, token, user }) {
             if (token) {
                 session.accessToken = token.accessToken;
                 session.refreshToken = token.refreshToken;

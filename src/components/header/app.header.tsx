@@ -66,6 +66,7 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 
 export default function AppHeader() {
     const { data: session } = useSession();
+    console.log(">>> check session: ", session)
 
     const router = useRouter();
     const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
@@ -96,8 +97,16 @@ export default function AppHeader() {
     const renderMenu = (
         <Menu
             anchorEl={anchorEl}
+            // anchorOrigin={{
+            //     vertical: 'top',
+            //     horizontal: 'right',
+            // }}
             id={menuId}
             keepMounted
+            // transformOrigin={{
+            //     vertical: 'top',
+            //     horizontal: 'right',
+            // }}
             open={isMenuOpen}
             onClose={handleMenuClose}
             transformOrigin={{ horizontal: 'right', vertical: 'top' }}
@@ -112,11 +121,10 @@ export default function AppHeader() {
                 </Link>
             </MenuItem>
             <MenuItem onClick={() => {
-                handleMenuClose()
-                signOut()
-            }}
-            >Logout</MenuItem>
-        </Menu >
+                handleMenuClose();
+                signOut();
+            }}>Logout</MenuItem>
+        </Menu>
     );
 
     const mobileMenuId = 'primary-search-account-menu-mobile';
@@ -230,9 +238,11 @@ export default function AppHeader() {
                                     </>
                                     :
                                     <>
-                                        <Link href={"#"}
-                                            onClick={() => signIn()}
-                                        >Login</Link>
+                                        <Link
+                                            href={"/auth/signin"}
+                                        >
+                                            Login
+                                        </Link>
                                     </>
                             }
 
