@@ -20,7 +20,7 @@ import Container from '@mui/material/Container';
 import Avatar from '@mui/material/Avatar';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
-import { useSession } from "next-auth/react";
+import { useSession, signIn, signOut } from "next-auth/react";
 
 //styled-component
 const Search = styled('div')(({ theme }) => ({
@@ -96,16 +96,8 @@ export default function AppHeader() {
     const renderMenu = (
         <Menu
             anchorEl={anchorEl}
-            // anchorOrigin={{
-            //     vertical: 'top',
-            //     horizontal: 'right',
-            // }}
             id={menuId}
             keepMounted
-            // transformOrigin={{
-            //     vertical: 'top',
-            //     horizontal: 'right',
-            // }}
             open={isMenuOpen}
             onClose={handleMenuClose}
             transformOrigin={{ horizontal: 'right', vertical: 'top' }}
@@ -119,8 +111,12 @@ export default function AppHeader() {
                     Profile
                 </Link>
             </MenuItem>
-            <MenuItem onClick={handleMenuClose}>Logout</MenuItem>
-        </Menu>
+            <MenuItem onClick={() => {
+                handleMenuClose()
+                signOut()
+            }}
+            >Logout</MenuItem>
+        </Menu >
     );
 
     const mobileMenuId = 'primary-search-account-menu-mobile';
@@ -199,7 +195,7 @@ export default function AppHeader() {
                             }}
                             onClick={() => handleRedirectHome()}
                         >
-                            HoiDanIt SC
+                            Soundclound Clone
                         </Typography>
                         <Search>
                             <SearchIconWrapper>
@@ -230,11 +226,13 @@ export default function AppHeader() {
                                         <span>Upload</span>
                                         <Avatar
                                             onClick={handleProfileMenuOpen}
-                                        >ER</Avatar>
+                                        >P</Avatar>
                                     </>
                                     :
                                     <>
-                                        <Link href={"/api/auth/signin"}>Login</Link>
+                                        <Link href={"#"}
+                                            onClick={() => signIn()}
+                                        >Login</Link>
                                     </>
                             }
 
