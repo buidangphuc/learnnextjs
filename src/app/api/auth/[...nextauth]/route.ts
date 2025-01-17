@@ -60,17 +60,17 @@ export const authOptions: AuthOptions = {
                     },
                 })
                 if (res.data) {
-                    token.accessToken = res.data?.accessToken;
-                    token.refreshToken = res.data.refreshToken;
+                    token.access_token = res.data?.access_token;
+                    token.refresh_token = res.data.refresh_token;
                     token.user = res.data.user;
                 }
             }
 
             if (trigger === "signIn" && account?.provider === "credentials") {
                 //@ts-ignore
-                token.accessToken = user.accessToken;
+                token.access_token = user.access_token;
                 //@ts-ignore
-                token.refreshToken = user.refreshToken;
+                token.refresh_token = user.refresh_token;
                 //@ts-ignore
                 token.user = user.user;
             }
@@ -78,8 +78,8 @@ export const authOptions: AuthOptions = {
         },
         session({ session, token, user }) {
             if (token) {
-                session.accessToken = token.accessToken;
-                session.refreshToken = token.refreshToken;
+                session.access_token = token.access_token;
+                session.refresh_token = token.refresh_token;
                 session.user = token.user;
             }
             return session;

@@ -181,7 +181,7 @@ const WaveTrack = () => {
                                 width: "fit-content",
                                 color: "white"
                             }}>
-                                Song
+                                Name
                             </div>
                             <div style={{
                                 padding: "0 5px",
